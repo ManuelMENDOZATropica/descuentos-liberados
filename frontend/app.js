@@ -13,6 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Start Camera
     async function startCamera() {
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+            console.error("Camera API not available. This is usually because the site is not running on HTTPS or localhost.");
+            alert("Tu navegador bloqueó el acceso a la cámara. Para usar la cámara, la web DEBE abrirse con 'https://' o desde 'localhost'.");
+            return;
+        }
+
         try {
             const stream = await navigator.mediaDevices.getUserMedia({
                 video: { facingMode: 'environment' }, // Usa cámara trasera si está disponible
@@ -21,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             video.srcObject = stream;
         } catch (err) {
             console.error("Error accessing the camera", err);
-            alert("No se pudo acceder a la cámara. Por favor, asegúrate de dar los permisos necesarios.");
+            alert("No se pudo acceder a la cámara. Por favor, asegúrate de darle permiso al navegador en tu dispositivo.");
         }
     }
 
