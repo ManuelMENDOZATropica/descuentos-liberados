@@ -51,7 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('image', blob, 'capture.jpg');
 
             try {
-                const response = await fetch('http://localhost:3000/api/analyze', {
+                // Si estamos en Vercel, usamos el prefijo del experimentalService. Si es local, usamos localhost:3000
+                const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                const apiUrl = isLocalhost ? 'http://localhost:3000/api/analyze' : '/_/backend/api/analyze';
+
+                const response = await fetch(apiUrl, {
                     method: 'POST',
                     body: formData
                 });
