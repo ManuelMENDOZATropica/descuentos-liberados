@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NYX - Descuentos Liberados</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        
+        <!-- Header -->
+        <header>
+            <h1>Descuentos Liberados</h1>
+            <p>Escanea una pancarta y libera tu descuento</p>
+        </header>
+
+        <!-- Main Camera View -->
+        <main id="camera-view">
+            <div class="viewfinder">
+                <video id="video" autoplay playsinline></video>
+                <div class="scanner-overlay"></div>
+                <div class="corner top-left"></div>
+                <div class="corner top-right"></div>
+                <div class="corner bottom-left"></div>
+                <div class="corner bottom-right"></div>
+            </div>
+
+            <button id="capture-btn" class="primary-btn">
+                <div class="inner-circle"></div>
+            </button>
+            <p class="instruction">Apunta a una pancarta de Pride</p>
+        </main>
+
+        <!-- Loading / Analyzing View -->
+        <section id="loading-view" class="hidden">
+            <div class="loader">
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="text">Analizando con IA...</div>
+            </div>
+        </section>
+
+        <!-- Results View -->
+        <section id="result-view" class="hidden">
+            <div class="result-card">
+                <h2>¡Descuento Liberado!</h2>
+                <div class="discount-value">
+                    <span id="discount-amount">0</span>%
+                </div>
+                <p id="discount-message">Mensaje...</p>
+                
+                <div class="words-detected">
+                    <h3>Palabras Detectadas:</h3>
+                    <div id="words-container" class="tags">
+                        <!-- tags go here -->
+                    </div>
+                </div>
+
+                <button id="reset-btn" class="secondary-btn">Escanear Otra Pancarta</button>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Canvas (Hidden) for capturing image -->
+    <canvas id="canvas" style="display:none;"></canvas>
+
+    <script src="app.js"></script>
+</body>
+</html>
